@@ -1,0 +1,2 @@
+defmodule StrandTest do
+end

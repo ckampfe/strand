@@ -1,0 +1,2 @@
+defmodule Strand do
+end
