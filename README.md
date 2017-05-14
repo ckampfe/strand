@@ -2,6 +2,8 @@
 
 A library for graphs. This library is mostly an Elixir port of the amazing [Loom](https://github.com/aysylu/loom) library for Clojure.
 
+[![Build Status](https://travis-ci.org/ckampfe/strand.svg?branch=master)](https://travis-ci.org/ckampfe/strand)
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
