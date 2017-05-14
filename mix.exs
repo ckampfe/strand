@@ -13,9 +13,7 @@ defmodule Strand.Mixfile do
   end
 
   def application do
-    # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger],
-     mod: {Strand.Application, []}]
+    [extra_applications: [:logger]]
   end
 
   defp deps do
@@ -25,7 +23,6 @@ defmodule Strand.Mixfile do
   defp package do
     [maintainers: ["Clark Kampfe"],
      licenses: ["Eclipse Public License"],
-     links: %{"Github" => "https://github.com/ckampfe/strand"}
-    ]
+     links: %{"Github" => "https://github.com/ckampfe/strand"}]
   end
 end
