@@ -39,4 +39,13 @@ defmodule Strand.Protocols do
     @doc "reverses a directed graph"
     def transpose(g)
   end
+
+  defprotocol Viewable do
+    @doc """
+    transform graph data into a format usable
+    by `Mix.Utils.write_dot_graph!/5`
+    https://github.com/elixir-lang/elixir/blob/4087e744009ea241633679ba9804924c55a97cb1/lib/mix/lib/mix/utils.ex#L274
+    """
+    def format_for_mix_utils_dot(g)
+  end
 end

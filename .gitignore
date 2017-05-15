@@ -18,3 +18,8 @@ erl_crash.dump
 
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
+
+# graph visualization artifacts
+input.dot
+output.png
+

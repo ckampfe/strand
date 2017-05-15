@@ -18,6 +18,7 @@ defmodule Strand.Map do
   require MapSet, as: Set
   require Strand.Protocols.Graph, as: Graph
   require Strand.Protocols.Digraph, as: Digraph
+  require Strand.Protocols.Viewable, as: Viewable
 
   defimpl Graph, for: Map do
     def nodes(g) do
@@ -83,6 +84,21 @@ defmodule Strand.Map do
           Set.put(old, k)
         end)
       end)
+    end
+  end
+
+  defimpl Viewable, for: Map do
+    def format_for_mix_utils_dot(g) do
+      Enum.map(
+        g,
+        fn({k,vs}) -> {
+          k,
+          Enum.map(
+          vs, fn(v) ->
+            {v, []}
+          end)}
+        end
+      )
     end
   end
 end
