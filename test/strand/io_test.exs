@@ -1,7 +1,7 @@
 defmodule IOTest do
   use ExUnit.Case, async: true
   require MapSet, as: Set
-  require Strand.Protocols.Viewable, as: Viewable
+  alias Strand.Protocol.Viewable
 
   setup do
     g1 =
@@ -26,9 +26,9 @@ defmodule IOTest do
         f: Set.new([:e]),
         g: Set.new([:a, :f])}
 
-    dg1 = Strand.Digraph.new(g1)
-    dg2 = Strand.Digraph.new(g2)
-    dg3 = Strand.Digraph.new(g3)
+    dg1 = Strand.Impl.Digraph.new(g1)
+    dg2 = Strand.Impl.Digraph.new(g2)
+    dg3 = Strand.Impl.Digraph.new(g3)
 
     %{g1: g1,
       g2: g2,

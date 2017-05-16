@@ -1,4 +1,4 @@
-defmodule Strand.Map do
+defmodule Strand.Impl.Map do
   @moduledoc """
   Implementations of Graph and Digraph protocols for 
   Elixir's `Map`: https://hexdocs.pm/elixir/Map.html.
@@ -16,9 +16,7 @@ defmodule Strand.Map do
   """
 
   require MapSet, as: Set
-  require Strand.Protocols.Graph, as: Graph
-  require Strand.Protocols.Digraph, as: Digraph
-  require Strand.Protocols.Viewable, as: Viewable
+  alias Strand.Protocol.{Graph, Digraph, Viewable}
 
   defimpl Graph, for: Map do
     def nodes(g) do

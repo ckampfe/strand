@@ -11,7 +11,7 @@ by adding `strand` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:strand, "~> 0.1.0"}]
+  [{:strand, "~> 0.3.0"}]
 end
 ```
 

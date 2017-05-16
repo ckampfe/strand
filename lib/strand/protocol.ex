@@ -1,4 +1,4 @@
-defmodule Strand.Protocols do
+defmodule Strand.Protocol do
   @moduledoc """
   Graph-related protocols.
   """
@@ -28,16 +28,16 @@ defmodule Strand.Protocols do
 
   defprotocol Digraph do
     @doc "calculates the nodes that precede a node"
-    def predecessors(g, n)
+    def predecessors(dg, n)
 
     @doc "counts the inbound edges of a node"
-    def in_degree(g, n)
+    def in_degree(dg, n)
 
     @doc "calculates the inbound edges of a node"
-    def in_edges(g, n)
+    def in_edges(dg, n)
 
     @doc "reverses a directed graph"
-    def transpose(g)
+    def transpose(dg)
   end
 
   defprotocol Viewable do

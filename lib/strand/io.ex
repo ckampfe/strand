@@ -1,10 +1,10 @@
 defmodule Strand.IO do
-  require Strand.Protocols.Viewable, as: Viewable
+  alias Strand.Protocol.Viewable
 
   @doc """
   view the graph in graphviz.
   takes a graph for which there is an implementation
-  of `Strand.Protocols.Viewable`.
+  of `Strand.Protocol.Viewable`.
   Graphviz must be on your PATH.
   """
   def view!(g) do
