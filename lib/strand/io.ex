@@ -12,7 +12,10 @@ defmodule Strand.IO do
       Path.join(File.cwd!, "input.dot"),
       "graph",
       Viewable.format_for_mix_utils_dot(g),
-      fn({node, children}) -> {{node, nil}, children} end
+      fn
+        {{node, label}, children} -> {{node, label}, children}
+        {node, children} -> {{node, nil}, children}
+      end
     )
 
     {dot_image, 0} = System.cmd("dot", ["-Tpng", "input.dot"])
