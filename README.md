@@ -19,9 +19,9 @@ end
 
 ```elixir
 iex(1)> require MapSet, as: Set
-iex(2)> require Strand.Protocols.Graph, as: G
-iex(3)> require Strand.Protocols.Digraph, as: DG
-iex(4)> require Strand.Digraph, as: Digraph
+iex(2)> require Strand.Protocol.Graph, as: G
+iex(3)> require Strand.Protocol.Digraph, as: DG
+iex(4)> require Strand.Impl.Digraph, as: Digraph
 iex(5)> require Strand.Alg, as: Alg
 iex(6)> x = %{a: Set.new([]),
               b: Set.new([:a]),
