@@ -29,14 +29,16 @@ defmodule Strand.Alg do
 
   defp do_kahn(g, [{nk,_} = n|sxs], l) do
     nodes_with_edges_from_n_to_m =
-      Enum.filter(g, fn({_,mv}) ->
-        Set.member?(mv,nk)
+      Enum.filter(g, fn
+        {_, %Set{} = mv} -> Set.member?(mv,nk)
+        {_, mv} -> Enum.member?(mv, nk)
       end)
 
-    with_prior_removed = 
+    with_prior_removed =
       nodes_with_edges_from_n_to_m
-      |> Enum.map(fn({mk, mv}) ->
-        {mk, Set.delete(mv, nk)}
+      |> Enum.map(fn
+        {mk, %Set{} = mv} -> {mk, Set.delete(mv, nk)}
+        {mk, mv} -> {mk, Enum.reject(mv, &(&1 == nk))}
       end)
 
     news =
