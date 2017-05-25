@@ -6,12 +6,12 @@ A library for graphs. This library is mostly an Elixir port of the amazing [Loom
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `strand` to your list of dependencies in `mix.exs`:
+This library is [available in Hex](https://hex.pm/packages/strand).
+To install, add `strand` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:strand, "~> 0.3.0"}]
+  [{:strand, "~> 0.3"}]
 end
 ```
 
