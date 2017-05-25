@@ -3,7 +3,7 @@ defmodule Strand.Mixfile do
 
   def project do
     [app: :strand,
-     version: "0.3.1",
+     version: "0.3.2",
      elixir: "~> 1.4",
      package: package(),
      description: "graphs, like Loom",
