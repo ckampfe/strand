@@ -38,7 +38,7 @@ defmodule IOTest do
       dg3: dg3}
   end
 
-  test "it formats for Mix.Util.write_dot_graph!", context do
+  test "it formats for Mix.Util.write_dot_graph! for maps", context do
     assert Viewable.format_for_mix_utils_dot(context[:g1]) == [
       a: [],
       b: [a: []],
@@ -63,31 +63,32 @@ defmodule IOTest do
       f: [e: []],
       g: [a: [], f: []]
     ]
+  end
 
-    # TODO: implement for Digraph
-    # assert Viewable.format_for_mix_utils_dot(context[:dg1]) == [
-    #   a: [],
-    #   b: [a: []],
-    #   c: [b: []]
-    # ]
+  test "it formats for Mix.Util.write_dot_graph! for Digraphs", context do
+    assert Viewable.format_for_mix_utils_dot(context[:dg1]) == [
+        a: [],
+        b: [a: []],
+        c: [b: []]
+      ]
 
-    # assert Viewable.format_for_mix_utils_dot(context[:dg2]) == [
-    #   a: [],
-    #   b: [a: []],
-    #   c: [b: []],
-    #   d: [b: [], e: []],
-    #   e: [a: []],
-    #   f: [d: [], e: []]
-    # ]
+    assert Viewable.format_for_mix_utils_dot(context[:dg2]) == [
+      a: [],
+      b: [a: []],
+      c: [b: []],
+      d: [b: [], e: []],
+      e: [a: []],
+      f: [d: [], e: []]
+    ]
 
-    # assert Viewable.format_for_mix_utils_dot(context[:dg3]) == [
-    #   a: [b: [], c: []],
-    #   b: [c: [], d: []],
-    #   c: [e: [], f: []],
-    #   d: [],
-    #   e: [d: []],
-    #   f: [e: []],
-    #   g: [a: [], f: []]
-    # ]
+    assert Viewable.format_for_mix_utils_dot(context[:dg3]) == [
+      a: [b: [], c: []],
+      b: [c: [], d: []],
+      c: [e: [], f: []],
+      d: [],
+      e: [d: []],
+      f: [e: []],
+      g: [a: [], f: []]
+    ]
   end
 end

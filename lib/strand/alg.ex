@@ -4,11 +4,15 @@ defmodule Strand.Alg do
   """
 
   require MapSet, as: Set
+  require Strand.Impl.Digraph, as: Digraph
 
   @doc """
   Return the topological order of a graph according
   to Kahn's algorithm: https://en.wikipedia.org/wiki/Topological_sorting#Kahn.27s_algorithm
   """
+  def sort_topo(%Digraph{} = digraph) do
+    digraph |> Digraph.to_map |> sort_topo
+  end
   def sort_topo(graph) do
     kahn(graph)
   end

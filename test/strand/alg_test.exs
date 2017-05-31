@@ -48,20 +48,19 @@ defmodule AlgTest do
         f: [:e],
         g: [:a, :f]}
 
-    # TODO: implement sort_topo for Digrpah
-    # dg1 = Strand.Digraph.new(g1)
-    # dg2 = Strand.Digraph.new(g2)
-    # dg3 = Strand.Digraph.new(g3)
+    dg1 = Strand.Impl.Digraph.new(g1)
+    dg2 = Strand.Impl.Digraph.new(g2)
+    dg3 = Strand.Impl.Digraph.new(g3)
 
     %{g1: g1,
       g2: g2,
       g3: g3,
       gl1: gl1,
       gl2: gl2,
-      gl3: gl3#,
-      # dg1: dg1,
-      # dg2: dg2,
-      # dg3: dg3
+      gl3: gl3,
+      dg1: dg1,
+      dg2: dg2,
+      dg3: dg3
     }
   end
 
@@ -74,10 +73,9 @@ defmodule AlgTest do
     assert Alg.sort_topo(context[:gl3]) == [:d, :e, :f, :c, :b, :a, :g]
   end
 
-  # TODO: implement sort_topo for Digrpah
-  # test "it sorts Digraphs", context do
-  #   assert Alg.sort_topo(context[:dg1]) == [:a, :b, :c]
-  #   assert Alg.sort_topo(context[:dg2]) == [:a, :b, :c, :e, :d, :f]
-  #   assert Alg.sort_topo(context[:dg3]) == [:d, :e, :f, :c, :b, :a, :g]
-  # end
+  test "it sorts Digraphs", context do
+    assert Alg.sort_topo(context[:dg1]) == [:a, :b, :c]
+    assert Alg.sort_topo(context[:dg2]) == [:a, :b, :c, :e, :d, :f]
+    assert Alg.sort_topo(context[:dg3]) == [:d, :e, :f, :c, :b, :a, :g]
+  end
 end
