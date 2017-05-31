@@ -143,4 +143,10 @@ defmodule DigraphTest do
     assert dg3_reversed.in == context[:dg3].adj
     assert dg3_reversed.adj == context[:dg3].in
   end
+
+  test "it gets a map out of a Digraph", context do
+    assert Strand.Impl.Digraph.to_map(context[:dg1]) == context[:g1]
+    assert Strand.Impl.Digraph.to_map(context[:dg2]) == context[:g2]
+    assert Strand.Impl.Digraph.to_map(context[:dg3]) == context[:g3]
+  end
 end

@@ -6,7 +6,7 @@ defmodule Strand.Impl.Digraph do
   """
 
   require MapSet, as: Set
-  require Strand.Protocol.{Graph, Digraph}
+  require Strand.Protocol.{Graph, Digraph, Viewable}
 
   defstruct [:nodeset, :in, :adj]
 
@@ -18,6 +18,13 @@ defmodule Strand.Impl.Digraph do
              |> Enum.into(%{}),
       in: g |> Strand.Protocol.Digraph.transpose
     }
+  end
+
+  def to_map(g) do
+    adj_nodes = g.adj |> Map.keys |> Set.new()
+    [start_key|_] = Set.difference(g.nodeset, adj_nodes) |> Set.to_list
+
+    Map.put(g.adj, start_key, Set.new())
   end
 
   defimpl Strand.Protocol.Digraph, for: Strand.Impl.Digraph do
@@ -37,6 +44,14 @@ defmodule Strand.Impl.Digraph do
       %Strand.Impl.Digraph{nodeset: dg.nodeset,
                            adj: dg.in,
                            in: dg.adj}
+    end
+  end
+
+  defimpl Strand.Protocol.Viewable, for: Strand.Impl.Digraph do
+    def format_for_mix_utils_dot(g) do
+      g
+      |> Strand.Impl.Digraph.to_map
+      |> Strand.Protocol.Viewable.format_for_mix_utils_dot
     end
   end
 end
