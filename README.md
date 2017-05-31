@@ -11,7 +11,7 @@ To install, add `strand` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:strand, "~> 0.3"}]
+  [{:strand, "~> 0.4"}]
 end
 ```
 
