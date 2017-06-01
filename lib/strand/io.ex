@@ -8,6 +8,18 @@ defmodule Strand.IO do
   Graphviz must be on your PATH.
   """
   def view!(g) do
+    :ok = write!(g)
+    System.cmd("open", ["output.png"])
+    :ok
+  end
+
+  def write!(g, filename \\ "output.png") do
+    dot_image = generate!(g)
+    File.write(filename, dot_image)
+    :ok
+  end
+
+  def generate!(g) do
     Mix.Utils.write_dot_graph!(
       Path.join(File.cwd!, "input.dot"),
       "graph",
@@ -19,8 +31,6 @@ defmodule Strand.IO do
     )
 
     {dot_image, 0} = System.cmd("dot", ["-Tpng", "input.dot"])
-    File.write("output.png", dot_image)
-    System.cmd("open", ["output.png"])
-    :ok
+    dot_image
   end
 end
