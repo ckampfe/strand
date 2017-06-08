@@ -9,6 +9,13 @@ defmodule Strand.Alg do
   @doc """
   Return the topological order of a graph according
   to Kahn's algorithm: https://en.wikipedia.org/wiki/Topological_sorting#Kahn.27s_algorithm
+
+  ## Examples
+
+      iex> require Strand.Alg, as: Alg
+      iex> g = %{a: [], b: [:a], c: [:d, :a], d: [:a, :b]}
+      iex> Alg.sort_topo(g)
+      [:a, :b, :d, :c]
   """
   def sort_topo(%Digraph{} = digraph) do
     digraph |> Digraph.to_map |> sort_topo

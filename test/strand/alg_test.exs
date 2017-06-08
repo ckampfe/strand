@@ -2,6 +2,7 @@ defmodule AlgTest do
   use ExUnit.Case, async: true
   require MapSet, as: Set
   require Strand.Alg, as: Alg
+  doctest Strand.Alg
 
   setup do
     g1 =
