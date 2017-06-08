@@ -2,6 +2,7 @@ defmodule DigraphTest do
   use ExUnit.Case, async: true
   require MapSet, as: Set
   require Strand.Protocol.Digraph, as: Digraph
+  doctest Strand.Protocol.Digraph.Map
 
   setup do
     g1 =

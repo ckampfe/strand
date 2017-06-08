@@ -2,6 +2,7 @@ defmodule GraphTest do
   use ExUnit.Case, async: true
   require MapSet, as: Set
   alias Strand.Protocol.Graph
+  doctest Strand.Protocol.Graph.Map
 
   setup do
     g1 =
