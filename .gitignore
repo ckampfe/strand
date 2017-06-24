@@ -23,3 +23,9 @@ erl_crash.dump
 input.dot
 output.png
 
+# visual studio code
+/.vscode
+
+# graphs you might create
+*.png
+*.dot
