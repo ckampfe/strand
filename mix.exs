@@ -4,7 +4,7 @@ defmodule Strand.Mixfile do
   def project do
     [app: :strand,
      version: "0.5.0",
-     elixir: "~> 1.4",
+     elixir: "~> 1.6",
      package: package(),
      description: "graphs, like Loom",
      build_embedded: Mix.env == :prod,
