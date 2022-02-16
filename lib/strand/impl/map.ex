@@ -29,7 +29,7 @@ defmodule Strand.Impl.Map do
     """
     def nodes(g) do
       g
-      |> Map.keys
+      |> Map.keys()
       |> Set.new()
     end
 
@@ -42,9 +42,11 @@ defmodule Strand.Impl.Map do
         #MapSet<[b: :a, c: :a, c: :d, d: :a, d: :b]>
     """
     def edges(g) do
-      (for k <- Map.keys(g),
-           v <- Map.fetch!(g, k),
-      do: {k, v})
+      for(
+        k <- Map.keys(g),
+        v <- Map.fetch!(g, k),
+        do: {k, v}
+      )
       |> Set.new()
     end
 
@@ -113,7 +115,7 @@ defmodule Strand.Impl.Map do
         2
     """
     def out_degree(g, n) do
-      Set.size(out_edges(g,n))
+      Set.size(out_edges(g, n))
     end
   end
 
@@ -139,7 +141,7 @@ defmodule Strand.Impl.Map do
         3
     """
     def in_degree(g, n) do
-      predecessors(g, n) |> Enum.count
+      predecessors(g, n) |> Enum.count()
     end
 
     @doc """
@@ -169,12 +171,12 @@ defmodule Strand.Impl.Map do
       # investigate better autovivification for values
       initialized_map =
         edges
-        |> Enum.map(fn({_,v}) -> v end)
-        |> Map.new(fn(v) -> {v, Set.new()} end)
+        |> Enum.map(fn {_, v} -> v end)
+        |> Map.new(fn v -> {v, Set.new()} end)
 
       edges
-      |> Enum.reduce(initialized_map, fn({k,v}, acc) ->
-        Map.update(acc, v, Set.new(), fn(old) ->
+      |> Enum.reduce(initialized_map, fn {k, v}, acc ->
+        Map.update(acc, v, Set.new(), fn old ->
           Set.put(old, k)
         end)
       end)
@@ -185,12 +187,16 @@ defmodule Strand.Impl.Map do
     def format_for_mix_utils_dot(g) do
       Enum.map(
         g,
-        fn({k,vs}) -> {
-          k,
-          Enum.map(
-          vs, fn(v) ->
-            {v, []}
-          end)}
+        fn {k, vs} ->
+          {
+            k,
+            Enum.map(
+              vs,
+              fn v ->
+                {v, []}
+              end
+            )
+          }
         end
       )
     end

@@ -5,38 +5,32 @@ defmodule DigraphTest do
   doctest Strand.Protocol.Digraph.Map
 
   setup do
-    g1 =
-      %{a: Set.new([]),
-        b: Set.new([:a]),
-        c: Set.new([:b])}
+    g1 = %{a: Set.new([]), b: Set.new([:a]), c: Set.new([:b])}
 
-    g2 =
-      %{a: Set.new([]),
-        b: Set.new([:a]),
-        c: Set.new([:b]),
-        d: Set.new([:b, :e]),
-        e: Set.new([:a]),
-        f: Set.new([:d, :e])}
+    g2 = %{
+      a: Set.new([]),
+      b: Set.new([:a]),
+      c: Set.new([:b]),
+      d: Set.new([:b, :e]),
+      e: Set.new([:a]),
+      f: Set.new([:d, :e])
+    }
 
-    g3 =
-      %{a: Set.new([:b, :c]),
-        b: Set.new([:c, :d]),
-        c: Set.new([:e, :f]),
-        d: Set.new([]),
-        e: Set.new([:d]),
-        f: Set.new([:e]),
-        g: Set.new([:a, :f])}
+    g3 = %{
+      a: Set.new([:b, :c]),
+      b: Set.new([:c, :d]),
+      c: Set.new([:e, :f]),
+      d: Set.new([]),
+      e: Set.new([:d]),
+      f: Set.new([:e]),
+      g: Set.new([:a, :f])
+    }
 
     dg1 = Strand.Impl.Digraph.new(g1)
     dg2 = Strand.Impl.Digraph.new(g2)
     dg3 = Strand.Impl.Digraph.new(g3)
 
-    %{g1: g1,
-      g2: g2,
-      g3: g3,
-      dg1: dg1,
-      dg2: dg2,
-      dg3: dg3}
+    %{g1: g1, g2: g2, g3: g3, dg1: dg1, dg2: dg2, dg3: dg3}
   end
 
   test "it determines predecessors for maps", context do
@@ -58,55 +52,68 @@ defmodule DigraphTest do
   end
 
   test "it transposes (reverses) maps", context do
-    assert Digraph.transpose(context[:g1]) == %{a: Set.new([:b]),
-                                                b: Set.new([:c])}
-    assert Digraph.transpose(context[:g2]) == %{a: Set.new([:b, :e]),
-                                                b: Set.new([:c, :d]),
-                                                d: Set.new([:f]),
-                                                e: Set.new([:d, :f])}
-    assert Digraph.transpose(context[:g3]) == %{a: Set.new([:g]),
-                                                b: Set.new([:a]),
-                                                c: Set.new([:a, :b]),
-                                                d: Set.new([:b, :e]),
-                                                e: Set.new([:c, :f]),
-                                                f: Set.new([:c, :g])}
+    assert Digraph.transpose(context[:g1]) == %{a: Set.new([:b]), b: Set.new([:c])}
+
+    assert Digraph.transpose(context[:g2]) == %{
+             a: Set.new([:b, :e]),
+             b: Set.new([:c, :d]),
+             d: Set.new([:f]),
+             e: Set.new([:d, :f])
+           }
+
+    assert Digraph.transpose(context[:g3]) == %{
+             a: Set.new([:g]),
+             b: Set.new([:a]),
+             c: Set.new([:a, :b]),
+             d: Set.new([:b, :e]),
+             e: Set.new([:c, :f]),
+             f: Set.new([:c, :g])
+           }
   end
 
   test "it creates new Digraphs", context do
     assert Strand.Impl.Digraph.new(context[:g1]) == %Strand.Impl.Digraph{
-      nodeset: Set.new([:a, :b, :c]),
-      adj: %{b: Set.new([:a]), c: Set.new([:b])},
-      in: %{a: Set.new([:b]), b: Set.new([:c])},
-    }
+             nodeset: Set.new([:a, :b, :c]),
+             adj: %{b: Set.new([:a]), c: Set.new([:b])},
+             in: %{a: Set.new([:b]), b: Set.new([:c])}
+           }
 
     assert Strand.Impl.Digraph.new(context[:g2]) == %Strand.Impl.Digraph{
-      nodeset: Set.new([:a, :b, :c, :d, :e, :f]),
-      adj: %{b: Set.new([:a]),
-             c: Set.new([:b]),
-             d: Set.new([:b, :e]),
-             e: Set.new([:a]),
-             f: Set.new([:d, :e])},
-      in: %{a: Set.new([:b, :e]),
-            b: Set.new([:c, :d]),
-            d: Set.new([:f]),
-            e: Set.new([:d, :f])}
-    }
+             nodeset: Set.new([:a, :b, :c, :d, :e, :f]),
+             adj: %{
+               b: Set.new([:a]),
+               c: Set.new([:b]),
+               d: Set.new([:b, :e]),
+               e: Set.new([:a]),
+               f: Set.new([:d, :e])
+             },
+             in: %{
+               a: Set.new([:b, :e]),
+               b: Set.new([:c, :d]),
+               d: Set.new([:f]),
+               e: Set.new([:d, :f])
+             }
+           }
 
     assert Strand.Impl.Digraph.new(context[:g3]) == %Strand.Impl.Digraph{
-      nodeset: Set.new([:a, :b, :c, :d, :e, :f, :g]),
-      adj: %{a: Set.new([:b, :c]),
-             b: Set.new([:c, :d]),
-             c: Set.new([:e, :f]),
-             e: Set.new([:d]),
-             f: Set.new([:e]),
-             g: Set.new([:a, :f])},
-      in: %{a: Set.new([:g]),
-            b: Set.new([:a]),
-            c: Set.new([:a, :b]),
-            d: Set.new([:b, :e]),
-            e: Set.new([:c, :f]),
-            f: Set.new([:c, :g])}
-    }
+             nodeset: Set.new([:a, :b, :c, :d, :e, :f, :g]),
+             adj: %{
+               a: Set.new([:b, :c]),
+               b: Set.new([:c, :d]),
+               c: Set.new([:e, :f]),
+               e: Set.new([:d]),
+               f: Set.new([:e]),
+               g: Set.new([:a, :f])
+             },
+             in: %{
+               a: Set.new([:g]),
+               b: Set.new([:a]),
+               c: Set.new([:a, :b]),
+               d: Set.new([:b, :e]),
+               e: Set.new([:c, :f]),
+               f: Set.new([:c, :g])
+             }
+           }
   end
 
   test "it determines predecessors for Digraphs", context do

@@ -5,38 +5,32 @@ defmodule GraphTest do
   doctest Strand.Protocol.Graph.Map
 
   setup do
-    g1 =
-      %{a: Set.new([]),
-        b: Set.new([:a]),
-        c: Set.new([:b])}
+    g1 = %{a: Set.new([]), b: Set.new([:a]), c: Set.new([:b])}
 
-    g2 =
-      %{a: Set.new([]),
-        b: Set.new([:a]),
-        c: Set.new([:b]),
-        d: Set.new([:b, :e]),
-        e: Set.new([:a]),
-        f: Set.new([:d, :e])}
+    g2 = %{
+      a: Set.new([]),
+      b: Set.new([:a]),
+      c: Set.new([:b]),
+      d: Set.new([:b, :e]),
+      e: Set.new([:a]),
+      f: Set.new([:d, :e])
+    }
 
-    g3 =
-      %{a: Set.new([:b, :c]),
-        b: Set.new([:c, :d]),
-        c: Set.new([:e, :f]),
-        d: Set.new([]),
-        e: Set.new([:d]),
-        f: Set.new([:e]),
-        g: Set.new([:a, :f])}
+    g3 = %{
+      a: Set.new([:b, :c]),
+      b: Set.new([:c, :d]),
+      c: Set.new([:e, :f]),
+      d: Set.new([]),
+      e: Set.new([:d]),
+      f: Set.new([:e]),
+      g: Set.new([:a, :f])
+    }
 
     dg1 = Strand.Impl.Digraph.new(g1)
     dg2 = Strand.Impl.Digraph.new(g2)
     dg3 = Strand.Impl.Digraph.new(g3)
 
-    %{g1: g1,
-      g2: g2,
-      g3: g3,
-      dg1: dg1,
-      dg2: dg2,
-      dg3: dg3}
+    %{g1: g1, g2: g2, g3: g3, dg1: dg1, dg2: dg2, dg3: dg3}
   end
 
   test "it has nodes for maps", context do
@@ -47,19 +41,14 @@ defmodule GraphTest do
 
   test "it has edges for maps", context do
     assert Graph.edges(context[:g1]) ==
-      Set.new([{:b, :a}, {:c, :b}])
+             Set.new([{:b, :a}, {:c, :b}])
 
     assert Graph.edges(context[:g2]) ==
-      Set.new([{:b, :a},
-               {:c, :b},
-               {:d, :b},
-               {:d, :e},
-               {:e, :a},
-               {:f, :d},
-               {:f, :e}])
+             Set.new([{:b, :a}, {:c, :b}, {:d, :b}, {:d, :e}, {:e, :a}, {:f, :d}, {:f, :e}])
 
     assert Graph.edges(context[:g3]) ==
-      Set.new([{:a, :b},
+             Set.new([
+               {:a, :b},
                {:a, :c},
                {:b, :c},
                {:b, :d},
@@ -68,7 +57,8 @@ defmodule GraphTest do
                {:e, :d},
                {:f, :e},
                {:g, :a},
-               {:g, :f}])
+               {:g, :f}
+             ])
   end
 
   test "it finds determines node membership for maps", context do

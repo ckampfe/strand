@@ -21,7 +21,7 @@ defmodule Strand.IO do
 
   def generate!(g) do
     Mix.Utils.write_dot_graph!(
-      Path.join(File.cwd!, "input.dot"),
+      Path.join(File.cwd!(), "input.dot"),
       "graph",
       Viewable.format_for_mix_utils_dot(g),
       fn
