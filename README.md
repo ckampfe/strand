@@ -4,6 +4,8 @@ A library for graphs. This library is mostly an Elixir port of the amazing [Loom
 
 [![Elixir CI](https://github.com/ckampfe/strand/actions/workflows/elixir.yml/badge.svg)](https://github.com/ckampfe/strand/actions/workflows/elixir.yml)
 
+[Documentation](https://hexdocs.pm/strand/)
+
 ## Installation
 
 This library is [available in Hex](https://hex.pm/packages/strand).
