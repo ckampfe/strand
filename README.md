@@ -2,7 +2,7 @@
 
 A library for graphs. This library is mostly an Elixir port of the amazing [Loom](https://github.com/aysylu/loom) library for Clojure.
 
-[![Build Status](https://travis-ci.org/ckampfe/strand.svg?branch=master)](https://travis-ci.org/ckampfe/strand)
+[![Elixir CI](https://github.com/ckampfe/strand/actions/workflows/elixir.yml/badge.svg)](https://github.com/ckampfe/strand/actions/workflows/elixir.yml)
 
 ## Installation
 
@@ -11,7 +11,7 @@ To install, add `strand` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:strand, "~> 0.5"}]
+  [{:strand, "~> 0.6"}]
 end
 ```
 
