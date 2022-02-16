@@ -25,7 +25,7 @@ defmodule Strand.Mixfile do
   defp package do
     [
       maintainers: ["Clark Kampfe"],
-      licenses: ["Eclipse Public License"],
+      licenses: ["EPL-1.0"],
       links: %{"Github" => "https://github.com/ckampfe/strand"}
     ]
   end
